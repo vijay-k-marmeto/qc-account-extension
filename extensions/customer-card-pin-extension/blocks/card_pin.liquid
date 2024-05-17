@@ -1,0 +1,131 @@
+{% if template contains 'account' %}
+{{ 'index.css' |  asset_url | stylesheet_tag }}
+<script src="{{ 'index.js' |  asset_url }}" defer></script>
+
+{% style %}
+ #add-to-wallet-submit-button{
+    color: {{ block.settings.qc_claim_btn_text_color }};
+    background-color: {{ block.settings.qc_claim_btn_bg_color }};
+ }
+ .header-title{
+    color: {{ block.settings.header_title_color }};
+ }
+ #walletBalance{
+    color: {{ block.settings.balance_color }};
+ }
+{% endstyle %}
+
+<div>
+  <div class="wallet-container">
+    <div>
+        {% if block.settings.header_title %}
+            <h4 class="header-title">{{ block.settings.header_title }}</h4>
+        {% endif %}
+        <div>
+        <span id="wallet-balance">Rs.0</span>
+        <button class="view-wallet-button">View wallet</button>
+        </div>
+    </div>
+    <div><button id="create-wallet-button">Wallet does not exist</button></div>
+    </div>
+    <div class="gift-container">
+      <h2>Add another Gift Card</h2>
+      {% if block.settings.qc_gift_card_content != blank %}
+          {{ block.settings.qc_gift_card_content }}
+      {% endif %}
+      <div class="inputs-container">
+        <input id="card-input" name="card-pin" placeholder="Enter Card Number" type="text" />
+        <label class="pin-input-container">
+          {% render "lock-icon" %}
+          <input id="pin-input" name="card-pin" placeholder="Enter pin" type="text" />
+        </label>
+        <button id="add-to-wallet-submit-button" data-store = "{{ shop.domain }}" data-customer-id = "{{ customer.id }}">
+          <label class="submit-button-spinner hidden">{% render 'loading-spinner' %}</label>
+          <label class="submit-button-content">{{ block.settings.qc_claim_button }}</label>
+        </button>
+      </div>
+      <div id="error-container"> </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Add Gift Card Pin",
+    "target": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Gift Card Header"
+      },
+      {
+        "type": "text",
+        "id": "header_title",
+        "label": "Header Title",
+        "default": "Your Gift Card wallet balance"
+      },
+      {
+        "type": "color",
+        "id": "header_title_color",
+        "label": "Header Title Color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "balance_color",
+        "label": "Balance Color",
+        "default": "#b62028"
+      },
+      {
+        "type": "header",
+        "content": "Gift Card Body Content"
+      },
+      {
+        "type": "header",
+        "content": "Content to show when user is loggedin"
+      },
+      {
+        "type": "text",
+        "id": "qc_gift_card_title",
+        "label": "Title",
+        "default": "Add another Gift Card"
+      },
+      {
+        "type": "color",
+        "id": "qc_gift_card_title_color",
+        "label": "Title Color",
+        "default": "#000"
+      },
+      {
+        "type": "richtext",
+        "id": "qc_gift_card_content",
+        "label": "Content",
+        "default": "<p>Please check your E-mail or SMS to retrieve your Card pin details. Format of Card pin is 6 digits Ex: 123456</p>" 
+      },
+      {
+        "type": "color",
+        "id": "qc_gift_card_content_color",
+        "label": "Content Color",
+        "default": "#000"
+      },
+      {
+        "type": "text",
+        "id": "qc_claim_button",
+        "label": "Claim Code Button",
+        "default": "Add to Balance"
+      },
+      {
+        "type": "color",
+        "id": "qc_claim_btn_text_color",
+        "label": "Claim Button Text Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "qc_claim_btn_bg_color",
+        "label": "Claim Button Background Color",
+        "default": "#B62028"
+      }
+    ]
+  }
+{% endschema %}

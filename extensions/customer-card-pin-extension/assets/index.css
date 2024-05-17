@@ -1,0 +1,78 @@
+.wallet-container{
+    display: flex;
+    justify-content: space-between;
+}
+.gift-container{
+    text-align: center;
+}
+.header-title{
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 0;
+}
+.wallet-container p{
+    max-width: 74rem;
+    font-size: 1.4rem;
+    text-align: center;
+}
+#walletBalance{
+    font-weight: 700;
+    font-size: 2.4rem;
+}
+.create-wallet-button{
+    background: none;
+    border: none;
+    color: #B62028;
+    font-size: 1.8rem;
+}
+.view-wallet-button{
+    border: none;
+    background: none;
+    text-decoration: underline;
+    font-size: 1.6rem;
+}
+.gift-container h2{
+    font-size: 2rem;
+    font-weight: 500;
+}
+.inputs-container input:focus-visible{
+    outline: none;
+    box-shadow: none;
+}
+.inputs-container{
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3.2rem;
+}
+#card-input{
+    border: 1px solid #953B39;
+    width: 14.6rem;
+    padding: 13px 19px 13px 19px;
+}
+.pin-input-container{
+    border: 1px solid #953B39;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+}
+#pin-input{
+    border: none;
+    padding: 13px 19px 13px 19px;
+    width: 12.5rem;
+}
+#add-to-wallet-submit-button{
+    border: none;
+    padding: 14px 37px 14px 37px;
+    border-radius: 4px;
+    cursor: pointer;
+    min-width: 15rem;
+    display: flex;
+}
+#add-to-wallet-submit-button .loading-spinner{
+    transform: translateX(-50%);
+}
+#add-to-wallet-submit-button .path{
+    stroke: #fff;
+}
